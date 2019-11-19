@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
-import alert from './alert';
-import auth from './auth';
-import profile from './profile';
-import post from './post';
+import breweries from './breweries';
+import weather from './weather';
+import restaurants from './restaurants';
 
 export default combineReducers({
-  alert,
-  auth,
-  profile,
-  post
+  breweries,
+  restaurants,
+  weather,
+  places
 });
