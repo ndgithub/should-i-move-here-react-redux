@@ -1,4 +1,4 @@
-import * as consts from '../constants';
+import * as CONST from '../constants';
 
 const initialState = {
   breweries: [],
@@ -8,7 +8,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case consts.GET_POSTS:
+    case CONST.GET_POSTS:
       return {
         ...state,
         breweries: action.payload,
@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         isError: false
       };
 
-    case consts.BREWERIES_ERROR:
+    case CONST.BREWERIES_ERROR:
       return {
         ...state,
         isLoading: false,
