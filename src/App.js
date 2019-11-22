@@ -5,11 +5,6 @@ import './App.css';
 import dotenv from 'dotenv';
 import { addToRecSearches } from './apiUtils';
 import { LOC_STORE_REC_SEARCHES } from './constants';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './reducers';
-
-const store = createStore(rootReducer);
 
 if (process.env.NODE_ENV !== 'production') dotenv.config();
 
@@ -31,7 +26,7 @@ const App = () => {
   };
 
   return (
-    <Provider store={store}>
+    <Fragment>
       {!place.formatted_address ? (
         <Landing updatePlace={updatePlace} recSearches={recSearches} />
       ) : (
@@ -41,7 +36,7 @@ const App = () => {
           recSearches={recSearches}
         />
       )}
-    </Provider>
+    </Fragment>
   );
 };
 

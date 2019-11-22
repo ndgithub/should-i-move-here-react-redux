@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { getBreweries } from '../../apiUtils';
 import Loading from '../Loading';
 import BreweryItem from './BreweryItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBeer } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
+import { getBreweries } from '../../actions/breweries';
+
 const Breweries = ({ place }) => {
   const [breweryState, setBreweryState] = useState({
     breweries: [],
@@ -57,5 +59,8 @@ const Breweries = ({ place }) => {
     </section>
   );
 };
-
-export default Breweries;
+const mapStateToProps = state => ({
+  breweries: state.breweries,
+  currentPlace: state.places.current
+});
+export default connect(mapStateToProps, { getBreweries })(Breweries);
