@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Loading from '../Loading';
 import BreweryItem from './BreweryItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,36 +6,14 @@ import { faBeer } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { getBreweries } from '../../actions/breweries';
 
-const Breweries = ({ place }) => {
-  const [breweryState, setBreweryState] = useState({
-    breweries: [],
-    isLoading: true,
-    isError: false
-  });
-
+const Breweries = ({
+  dispatch,
+  breweries: { breweries, isLoading, isError },
+  place
+}) => {
   useEffect(() => {
-    const fetchBreweries = async () => {
-      setBreweryState({
-        isLoading: true,
-        isError: false
-      });
-      try {
-        const res = await getBreweries(place);
-        setBreweryState({
-          breweries: res,
-          isLoading: false,
-          isError: false
-        });
-      } catch (error) {
-        console.log(error);
-        setBreweryState({
-          isLoading: false,
-          isError: true
-        });
-      }
-    };
-    fetchBreweries();
-  }, [place]);
+    getBreweries(dispatch, place);
+  }, [getBreweries, place]);
 
   return (
     <section className="brewery-container section-container">
@@ -44,12 +22,12 @@ const Breweries = ({ place }) => {
         <FontAwesomeIcon icon={faBeer} /> Local Breweries
       </h2>
       <div className="breweries-list">
-        {breweryState.isLoading ? (
+        {isLoading ? (
           <Loading />
-        ) : breweryState.isError ? (
+        ) : isError ? (
           'There was a problem getting the local breweries'
-        ) : breweryState.breweries.length > 0 ? (
-          breweryState.breweries.slice(0, 5).map((brewery, i) => {
+        ) : breweries.length > 0 ? (
+          breweries.slice(0, 5).map((brewery, i) => {
             return <BreweryItem key={i} brewery={brewery} />;
           })
         ) : (
@@ -60,7 +38,11 @@ const Breweries = ({ place }) => {
   );
 };
 const mapStateToProps = state => ({
-  breweries: state.breweries,
-  currentPlace: state.places.current
+  breweries: state.breweries
 });
-export default connect(mapStateToProps, { getBreweries })(Breweries);
+
+// const mapDispatchToProps = {
+//   getBreweries
+// };
+
+export default connect(mapStateToProps, null)(Breweries);
