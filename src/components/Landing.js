@@ -7,7 +7,7 @@ const Landing = () => {
     <div className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <div className="title">Where Should I Move?</div>
+          <div className="title">Should I Move Here?</div>
           <div className="sub-title">
             Enter a U.S. city to learn more about your next home : )
           </div>
