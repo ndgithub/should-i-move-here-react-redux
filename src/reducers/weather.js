@@ -1,4 +1,4 @@
-import * as CONST from '../constants';
+import { GET_WEATHER, WEATHER_ERROR, RESET_WEATHER } from '../constants';
 
 const initialState = {
   weathData: '',
@@ -8,14 +8,21 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case CONST.GET_WEATHER:
+    case RESET_WEATHER:
       return {
         ...state,
-        weathData: action.payload,
+        weathData: '',
+        isLoading: true,
+        isError: false
+      };
+    case GET_WEATHER:
+      return {
+        ...state,
+        weathData: action.weathData,
         isLoading: false,
         isError: false
       };
-    case CONST.WEATHER_ERROR:
+    case WEATHER_ERROR:
       return {
         ...state,
         isLoading: false,
