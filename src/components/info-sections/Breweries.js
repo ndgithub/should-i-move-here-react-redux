@@ -9,11 +9,11 @@ import { getBreweries } from '../../actions/breweries';
 const Breweries = ({
   dispatch,
   breweries: { breweries, isLoading, isError },
-  place
+  currentPlace
 }) => {
   useEffect(() => {
-    getBreweries(dispatch, place);
-  }, [place]);
+    getBreweries(dispatch, currentPlace);
+  }, [currentPlace]);
 
   return (
     <section className="brewery-container section-container">
@@ -38,7 +38,8 @@ const Breweries = ({
   );
 };
 const mapStateToProps = state => ({
-  breweries: state.breweries
+  breweries: state.breweries,
+  currentPlace: state.places.current
 });
 
 // const mapDispatchToProps = {

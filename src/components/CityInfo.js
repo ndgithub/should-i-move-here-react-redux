@@ -18,9 +18,9 @@ const CityInfo = () => {
               <RecentSearches />
             </Search>
             <Restaurants />
-            {/* <Breweries place={place} />
+            <Breweries />
 
-            <div className="map-container">
+            {/* <div className="map-container">
               <MapContainer coord={{ lat: place.lat, lng: place.lng }} />
             </div>
             <Weather place={place} /> */}
