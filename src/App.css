@@ -17,7 +17,8 @@ body {
 
 .landing {
   height: 100vh;
-  background: url('http://cdn.shopify.com/s/files/1/1207/2972/products/x31_grande.jpg?v=1500555567') no-repeat center center/cover fixed;
+  background: url('http://cdn.shopify.com/s/files/1/1207/2972/products/x31_grande.jpg?v=1500555567')
+    no-repeat center center/cover fixed;
 }
 
 .dark-overlay {
@@ -43,7 +44,8 @@ body {
 }
 
 .main-background {
-  background: url('http://cdn.shopify.com/s/files/1/1207/2972/products/x31_grande.jpg?v=1500555567') no-repeat center center/cover fixed;
+  background: url('http://cdn.shopify.com/s/files/1/1207/2972/products/x31_grande.jpg?v=1500555567')
+    no-repeat center center/cover fixed;
 }
 
 .container {
@@ -72,7 +74,7 @@ body {
 }
 
 .city-info .sub-title {
-  margin-bottom: 10px;
+  margin-bottom: -10px;
   font-size: 20px;
 }
 
@@ -204,6 +206,7 @@ h2.section-title {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .loading-container {
