@@ -20,10 +20,10 @@ const CityInfo = () => {
             <Restaurants />
             <Breweries />
 
-            {/* <div className="map-container">
-              <MapContainer coord={{ lat: place.lat, lng: place.lng }} />
+            <div className="map-container">
+              <MapContainer />
             </div>
-            <Weather place={place} /> */}
+            <Weather />
           </div>
         </div>
       </div>

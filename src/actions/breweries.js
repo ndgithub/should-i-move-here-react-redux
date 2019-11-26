@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { GET_BREWERIES, BREWERIES_ERROR } from '../constants';
+import { GET_BREWERIES, BREWERIES_ERROR, RESET_BREWERIES } from '../constants';
 
 export const getBreweries = async (dispatch, { formatted_address }) => {
-  console.log(formatted_address);
+  dispatch({ type: RESET_BREWERIES });
   try {
     const city = formatted_address.split(',')[0];
     console.log('city', city);
