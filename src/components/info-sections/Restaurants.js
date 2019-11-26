@@ -1,35 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { getRestInfo } from '../../apiUtils';
+import React, { useEffect } from 'react';
 import Loading from '../Loading';
 import RestItem from './RestItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
+import { getRestInfo } from '../../actions/restaurants';
 
-const Restaurants = ({ place }) => {
-  const [restState, setRestState] = useState({
-    rests: [],
-    isLoading: true,
-    isError: false
-  });
-
+const Restaurants = ({ dispatch, currentPlace, restaurants }) => {
   useEffect(() => {
-    const getRestInfos = async () => {
-      // Set the state again so if the users enters a new city, you get the loading symbol and errors reset to false.
-      setRestState({ isLoading: true, isError: false });
-      try {
-        const restInfo = await getRestInfo(place);
-        setRestState({ rests: restInfo, isLoading: false, isError: false });
-      } catch (error) {
-        console.log(error);
-        setRestState({
-          isLoading: false,
-          isError: true
-        });
-      }
-    };
-
-    getRestInfos();
-  }, [place]);
+    getRestInfo(dispatch, currentPlace);
+  }, [currentPlace]);
 
   return (
     <section className="restaurant-container section-container">
@@ -38,12 +18,12 @@ const Restaurants = ({ place }) => {
         <FontAwesomeIcon icon={faUtensils} /> Top Rated Restaurants
       </h2>
       <div className="restaurant-list">
-        {restState.isLoading ? (
+        {restaurants.isLoading ? (
           <Loading />
-        ) : restState.isError ? (
+        ) : restaurants.isError ? (
           'We had some trouble getting the restaurants'
         ) : (
-          restState.rests.map((rest, i) => {
+          restaurants.restaurants.map((rest, i) => {
             return <RestItem key={i} rest={rest} />;
           })
         )}
@@ -51,5 +31,9 @@ const Restaurants = ({ place }) => {
     </section>
   );
 };
+const mapStateToProps = state => ({
+  currentPlace: state.places.current,
+  restaurants: state.restaurants
+});
 
-export default Restaurants;
+export default connect(mapStateToProps)(Restaurants);

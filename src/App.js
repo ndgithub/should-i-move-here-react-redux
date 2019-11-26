@@ -20,11 +20,7 @@ const App = ({ currentPlace }) => {
   //   setPlace(place);
   // };
 
-  return (
-    <Fragment>
-      {!currentPlace ? <Landing recSearches={recSearches} /> : <CityInfo />}
-    </Fragment>
-  );
+  return <Fragment>{!currentPlace ? <Landing /> : <CityInfo />}</Fragment>;
 };
 const mapStateToProps = store => ({
   currentPlace: store.places.current

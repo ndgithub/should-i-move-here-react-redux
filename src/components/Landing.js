@@ -2,7 +2,7 @@ import React from 'react';
 import RecentSearches from './RecentSearches';
 import Search from './info-sections/Search';
 
-const Landing = ({ updatePlace, recSearches }) => {
+const Landing = () => {
   return (
     <div className="landing">
       <div className="dark-overlay">
@@ -12,11 +12,8 @@ const Landing = ({ updatePlace, recSearches }) => {
             Enter a U.S. city to learn more about your next home : )
           </div>
 
-          <Search updatePlace={updatePlace}>
-            <RecentSearches
-              recSearches={recSearches}
-              updatePlace={updatePlace}
-            />
+          <Search>
+            <RecentSearches />
           </Search>
         </div>
       </div>

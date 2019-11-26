@@ -14,14 +14,11 @@ const CityInfo = () => {
         <div className="container">
           <div className="city-info">
             <Header />
-            {/* <Search updatePlace={updatePlace} place={place}>
-              <RecentSearches
-                recSearches={recSearches}
-                updatePlace={updatePlace}
-              />
+            <Search>
+              <RecentSearches />
             </Search>
-            <Restaurants place={place} />
-            <Breweries place={place} />
+            <Restaurants />
+            {/* <Breweries place={place} />
 
             <div className="map-container">
               <MapContainer coord={{ lat: place.lat, lng: place.lng }} />

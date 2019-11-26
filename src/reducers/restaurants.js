@@ -1,4 +1,8 @@
-import * as CONST from '../constants';
+import {
+  GET_RESTAURANTS,
+  RESTAURANTS_ERROR,
+  RESET_RESTAURANTS
+} from '../constants';
 
 const initialState = {
   restaurants: [],
@@ -8,14 +12,21 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case CONST.GET_RESTAURANTS:
+    case RESET_RESTAURANTS:
       return {
         ...state,
-        restaurants: action.payload,
+        restaurants: [],
+        isLoading: true,
+        isError: false
+      };
+    case GET_RESTAURANTS:
+      return {
+        ...state,
+        restaurants: action.restaurants,
         isLoading: false,
         isError: false
       };
-    case CONST.RESTAURANTS_ERROR:
+    case RESTAURANTS_ERROR:
       return {
         ...state,
         isLoading: false,
