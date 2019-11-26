@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Header = ({ place }) => {
-  const placeSplit = place.formatted_address.split(',');
-  placeSplit.pop();
-  const city = placeSplit.join(',').toUpperCase();
+const Header = ({ currentPlace }) => {
+  const currentPlaceSplit = currentPlace.formatted_address.split(',');
+  currentPlaceSplit.pop();
+  const city = currentPlaceSplit.join(',').toUpperCase();
   return (
     <div className="header-container">
       {' '}
@@ -13,4 +14,5 @@ const Header = ({ place }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({ currentPlace: state.places.current });
+export default connect(mapStateToProps)(Header);

@@ -13,7 +13,7 @@ const Breweries = ({
 }) => {
   useEffect(() => {
     getBreweries(dispatch, place);
-  }, [getBreweries, place]);
+  }, [place]);
 
   return (
     <section className="brewery-container section-container">

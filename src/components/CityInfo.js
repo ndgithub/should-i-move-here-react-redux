@@ -7,14 +7,14 @@ import Header from './info-sections/Header';
 import Search from './info-sections/Search';
 import RecentSearches from './RecentSearches';
 
-const CityInfo = ({ updatePlace, place, recSearches }) => {
+const CityInfo = () => {
   return (
     <div className="main-background">
       <div className="dark-overlay">
         <div className="container">
           <div className="city-info">
-            <Header place={place} />
-            <Search updatePlace={updatePlace} place={place}>
+            <Header />
+            {/* <Search updatePlace={updatePlace} place={place}>
               <RecentSearches
                 recSearches={recSearches}
                 updatePlace={updatePlace}
@@ -26,7 +26,7 @@ const CityInfo = ({ updatePlace, place, recSearches }) => {
             <div className="map-container">
               <MapContainer coord={{ lat: place.lat, lng: place.lng }} />
             </div>
-            <Weather place={place} />
+            <Weather place={place} /> */}
           </div>
         </div>
       </div>

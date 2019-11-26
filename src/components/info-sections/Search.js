@@ -1,14 +1,19 @@
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
+import { connect } from 'react-redux';
+import { cityEntered } from '../../actions/places';
 
-const Search = ({ updatePlace, recSearches, children }) => {
+const Search = ({ dispatch, children }) => {
+  console.log('hello');
   return (
     <div className="search-container">
       <Autocomplete
         placeholder="Enter a U.S. city"
         style={{ width: '90%' }}
         onPlaceSelected={place => {
-          updatePlace({
+          console.log('asdfasdf');
+          console.log(place);
+          cityEntered(dispatch, {
             formatted_address: place.formatted_address,
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng()
@@ -22,4 +27,4 @@ const Search = ({ updatePlace, recSearches, children }) => {
   );
 };
 
-export default Search;
+export default connect(null, null)(Search);

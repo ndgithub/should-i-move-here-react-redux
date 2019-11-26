@@ -10,8 +10,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case CONST.PLACE_ADDED:
       return {
-        current: action.payload,
-        history: JSON.parse(localStorage.getItem(CONST.LOC_STORE_REC_SEARCHES)),
+        current: action.currentPlace,
+        history: action.history,
         isLoading: false
       };
     default:

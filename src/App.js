@@ -5,39 +5,28 @@ import './App.css';
 import dotenv from 'dotenv';
 import { addToRecSearches } from './apiUtils';
 import { LOC_STORE_REC_SEARCHES } from './constants';
+import { connect } from 'react-redux';
 
 if (process.env.NODE_ENV !== 'production') dotenv.config();
 
-const App = () => {
-  const [place, setPlace] = useState({
-    formatted_address: '',
-    lat: '',
-    lng: ''
-  });
-
+const App = ({ currentPlace }) => {
   const [recSearches, setRecSearches] = useState(
     JSON.parse(localStorage.getItem(LOC_STORE_REC_SEARCHES))
   );
 
   // have entered city in this state
-  const updatePlace = place => {
-    addToRecSearches(place, setRecSearches);
-    setPlace(place);
-  };
+  // const updatePlace = place => {
+  //   addToRecSearches(place, setRecSearches);
+  //   setPlace(place);
+  // };
 
   return (
     <Fragment>
-      {!place.formatted_address ? (
-        <Landing updatePlace={updatePlace} recSearches={recSearches} />
-      ) : (
-        <CityInfo
-          updatePlace={updatePlace}
-          place={place}
-          recSearches={recSearches}
-        />
-      )}
+      {!currentPlace ? <Landing recSearches={recSearches} /> : <CityInfo />}
     </Fragment>
   );
 };
-
-export default App;
+const mapStateToProps = store => ({
+  currentPlace: store.places.current
+});
+export default connect(mapStateToProps)(App);
